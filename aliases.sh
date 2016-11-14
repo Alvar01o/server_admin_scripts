@@ -1,1 +1,1 @@
-alias create_site='~/scripts/create_site.sh'
+alias create_site='~/server_admin_scripts/create_site.sh'
