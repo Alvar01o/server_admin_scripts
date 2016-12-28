@@ -1,6 +1,6 @@
 #!/bin/bash
 
-_COMPOSER_DIR='tools/composer.phar'
+_COMPOSER_DIR='composer.phar'
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -10,11 +10,13 @@ then
 	php tools/installer_composer
 fi
 
+echo "Root Login to set composer as command"
 #cp file with permissions
 su - -c "cp ${DIR}/${_COMPOSER_DIR} /usr/local/bin/composer"
 
 #cd to home
 cd ~
 
+echo "Installing laravel/lumen-installer"
 #install lumen
 composer global require "laravel/lumen-installer"
