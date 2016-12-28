@@ -1,0 +1,22 @@
+/**
+ * LUMEN INSTALATION NEEDS
+ */
+root@alvaro-principal:/var/www/html/dashboard/cms# composer install
+Do not run Composer as root/super user! See https://getcomposer.org/root for details
+Loading composer repositories with package information
+Installing dependencies (including require-dev) from lock file
+Your requirements could not be resolved to an installable set of packages.
+
+  Problem 1
+    - Installation request for illuminate/encryption v5.3.23 -> satisfiable by illuminate/encryption[v5.3.23].
+    - illuminate/encryption v5.3.23 requires ext-mbstring * -> the requested PHP extension mbstring is missing from your system.
+  Problem 2
+    - Installation request for illuminate/support v5.3.23 -> satisfiable by illuminate/support[v5.3.23].
+    - illuminate/support v5.3.23 requires ext-mbstring * -> the requested PHP extension mbstring is missing from your system.
+  Problem 3
+    - Installation request for phpunit/phpunit 5.7.4 -> satisfiable by phpunit/phpunit[5.7.4].
+    - phpunit/phpunit 5.7.4 requires ext-mbstring * -> the requested PHP extension mbstring is missing from your system.
+  Problem 4
+    - illuminate/support v5.3.23 requires ext-mbstring * -> the requested PHP extension mbstring is missing from your system.
+    - laravel/lumen-framework v5.3.3 requires illuminate/support 5.3.* -> satisfiable by illuminate/support[v5.3.23].
+    - Installation request for laravel/lumen-framework v5.3.3 -> satisfiable by laravel/lumen-framework[v5.3.3].
