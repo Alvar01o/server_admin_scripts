@@ -1,9 +1,12 @@
 #/bin/sh
 # @autor alvar01omer@gmail.com 
 
+# syntax : create_site 'sitename'
+
 _GITS_HOLE="GIT_SOURCE/"
 _SERVER_DIRECTION="162.243.7.240"
 _SERVER_PATH="/var/www/html/"
+_MSG="git remote add $1  ssh://${USER}@${_SERVER_DIRECTION}/home/${USER}/${_GITS_HOLE}${1}.git && git push --set-upstream ${1} master"
 
 #cd to home
 cd ~
@@ -12,6 +15,12 @@ cd ~
 git init --bare $_GITS_HOLE${1}.git
 #cd in repo
 cd $_GITS_HOLE${1}.git
+
+if [ "$2" == "localhost" ]; then
+_SERVER_DIRECTION=$HOSTNAME
+_MSG="git init & git remote add $1  ssh://${USER}@${_SERVER_DIRECTION}/home/${USER}/${_GITS_HOLE}${1}.git && git push --set-upstream ${1} master"
+fi
+
 
 if [ "$2" == "index" ]; then
 	echo "Work dir seted on : ${_SERVER_PATH}"
@@ -25,4 +34,7 @@ fi
 
 chmod +x hooks/post-receive
 
-echo "git remote add $1  ssh://${USER}@${_SERVER_DIRECTION}/home/${USER}/${_GITS_HOLE}${1}.git && git push --set-upstream ${1} master   TO LOCAL REPO"
+echo ${_MSG}
+
+echo ${_MSG} >> /home/${USER}/${_GITS_HOLE}/reponame.txt
+
