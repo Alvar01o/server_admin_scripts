@@ -4,12 +4,13 @@
 
 
 
-###Name: server_admin_scripts
+### Name: server_admin_scripts
        adminsc - Custom commands for server things
 
 **SYNOPSIS**
+
 	**adminsc_create_site** **[SITE-NAME]**... **[localhost/index]**...
-       *(prepare the git server and put source in _SERVER_PATH)*
+       (prepare the git server and put source in _SERVER_PATH)
 
  - localhost - change server to local 	
  - index - use root _SERVER_PATH for
