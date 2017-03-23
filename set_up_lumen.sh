@@ -1,4 +1,5 @@
 #!/bin/bash
+# @autor alvar01omer@gmail.com 
 
 _COMPOSER_DIR='composer.phar'
 

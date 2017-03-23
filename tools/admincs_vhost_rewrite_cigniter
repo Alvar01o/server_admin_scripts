@@ -1,0 +1,11 @@
+<VirtualHost *:80>
+   DocumentRoot {}
+   ServerName {}
+   ErrorLog 'logs/{}-error_log.log'
+   CustomLog 'logs/{}-access_log.log' common
+   <Directory '{}'>
+       SetEnv CI_ENV development
+       php_admin_value error_reporting 32767
+       admincs_rewrite
+   </Directory>
+</VirtualHost>
