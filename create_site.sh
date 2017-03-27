@@ -1,12 +1,9 @@
-#/bin/sh
+#!/bin/bash
 # @autor alvar01omer@gmail.com 
 
 # syntax : create_site 'sitename'
 
-_GITS_HOLE="GIT_SOURCE/"
-_SERVER_DIRECTION="162.243.7.240"
-_SERVER_PATH="/var/www/html/"
-_MSG="git remote add $1  ssh://${USER}@${_SERVER_DIRECTION}/home/${USER}/${_GITS_HOLE}${1}.git && git push --set-upstream ${1} master"
+source config/config.sh
 
 #cd to home
 cd ~
@@ -29,7 +26,6 @@ else
 	mkdir ${_SERVER_PATH}${1}
 	echo -e "#!/bin/sh \n GIT_WORK_TREE=${_SERVER_PATH}${1} git checkout -f" > hooks/post-receive
         echo "Work dir seed on : ${_SERVER_PATH}${1}"
-
 fi
 
 chmod +x hooks/post-receive

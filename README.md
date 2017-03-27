@@ -1,7 +1,6 @@
 ### Install Commands ###
 
-    sh install.sh
-
+    ./install.sh
 
 
 ### Name: server_admin_scripts
@@ -18,3 +17,11 @@
 
 	**adminsc_set_up_lumen** 
 	*(Insall composer and lumen micro-framework)*
+
+	**adminsc_create_vhost**  **[OPTION]** **[DOMAIN]** **[DIRECTORY]**
+	*OPTION*
+		- {-vhost|-vhostr}	
+	*DOMAIN*
+	subdomain name 		
+	*DIRECTORY*
+	DocumentRoot off subdomain

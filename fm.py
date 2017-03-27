@@ -20,7 +20,7 @@ class FileManager(object):
 	def __init__(self,command, domain,dir):
 		super(FileManager, self).__init__()
 		config = ConfigParser.RawConfigParser()
-		config.read('config.cfg')
+		config.read('config/config.cfg')
 		self.option = command
 		self.TEMP_DIRECTORY = config.get('ADMINCS', 'TEMP_DIRECTORY')
 		self.TOOL_DIRECTORY = config.get('ADMINCS', 'TOOL_DIRECTORY')
