@@ -2,6 +2,5 @@
     ServerAdmin webmaster@localhost
     DocumentRoot {}
 	ServerName {}
-	ErrorLog 'logs/{}-error_log.log'
-	CustomLog 'logs/{}-access_log.log' common
+	ServerAlias www.{}
 </VirtualHost>

@@ -17,7 +17,7 @@ Load and format conf files
 class FileManager(object):
 
 	"""set up directories for FileManager"""
-	def __init__(self,command, domain,dir):
+	def __init__(self,command=None, domain=None,dir=None):
 		super(FileManager, self).__init__()
 		config = ConfigParser.RawConfigParser()
 		config.read('config/config.cfg')
@@ -26,8 +26,8 @@ class FileManager(object):
 		self.TOOL_DIRECTORY = config.get('ADMINCS', 'TOOL_DIRECTORY')
 		self.DIR = dir
 		self.DOMAIN = domain
-		self.UTIL_FILES = {'admincs_rewrite':""}
-
+		self.UTIL_FILES = {'admincs_rewrite':"" , 'admincs_man':""}
+		self.loadFiles()
 	"""
 	GetString function 
 	return file content
@@ -59,20 +59,22 @@ class FileManager(object):
 
 
 	def validateParams(self):
-		if(os.path.exists(self.DIR) ) :
+		if(os.path.exists(self.DIR)) :
 			return True
 		return False
 
+	def printMan(self):
+		print self.UTIL_FILES['admincs_man']
+
 	def getContent(self):
-		self.loadFiles()
 		if self.validateParams() :
 			if self.option == '-vhostr':
 				resutlText = self.GetString('admincs_vhost_rewrite_cigniter')
-				resutlText = resutlText.format(self.DIR,self.DOMAIN,self.DOMAIN,self.DOMAIN,self.DIR) 
+				resutlText = resutlText.format(self.DIR,self.DOMAIN,self.DOMAIN,self.DOMAIN,self.DOMAIN,self.DIR) 
 				return self.formatFile(resutlText)
 			if self.option == '-vhost':
 				resutlText = self.GetString('admincs_vhost_normal')
-				resutlText = resutlText.format(self.DIR,self.DOMAIN,self.DOMAIN,self.DOMAIN) 
+				resutlText = resutlText.format(self.DIR,self.DOMAIN,self.DOMAIN,self.DOMAIN,self.DOMAIN) 
 				return self.formatFile(resutlText)
 		return ""
 

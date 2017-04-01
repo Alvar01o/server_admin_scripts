@@ -19,9 +19,10 @@
 	*(Insall composer and lumen micro-framework)*
 
 	**adminsc_create_vhost**  **[OPTION]** **[DOMAIN]** **[DIRECTORY]**
+
 	*OPTION*
 		- {-vhost|-vhostr}	
 	*DOMAIN*
-	subdomain name 		
+		subdomain name 		
 	*DIRECTORY*
-	DocumentRoot of subdomain
+		DocumentRoot of subdomain
