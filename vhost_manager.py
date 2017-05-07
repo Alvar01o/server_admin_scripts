@@ -1,6 +1,7 @@
 from fm import FileManager
 
 import sys
+# script to create vhost for apache and nginx 
 
 fm = FileManager()
 try:

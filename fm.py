@@ -10,7 +10,7 @@ import sys
 import os
 import ConfigParser
 
-"""FileManager Class 
+"""FileManager Class
 Load and format conf files
 """
 
@@ -29,7 +29,7 @@ class FileManager(object):
 		self.UTIL_FILES = {'admincs_rewrite':"" , 'admincs_man':""}
 		self.loadFiles()
 	"""
-	GetString function 
+	GetString function
 	return file content
 	"""
 	def GetString(self,dir):
@@ -39,7 +39,7 @@ class FileManager(object):
 		return text
 
 	"""
-	LoadFiles function 
+	LoadFiles function
 	load files on dictionary
 	"""
 	def loadFiles(self):
@@ -51,7 +51,7 @@ class FileManager(object):
 	formatFile function
 	add sections to file
 	"""
-	def formatFile(self,strToformat):
+	def formatFile(self , strToformat):
 		for file in self.UTIL_FILES :
 			if strToformat.find(file) > 0 :
 				return strToformat.replace(file, self.UTIL_FILES[file])
@@ -67,14 +67,19 @@ class FileManager(object):
 		print self.UTIL_FILES['admincs_man']
 
 	def getContent(self):
+
 		if self.validateParams() :
 			if self.option == '-vhostr':
 				resutlText = self.GetString('admincs_vhost_rewrite_cigniter')
-				resutlText = resutlText.format(self.DIR,self.DOMAIN,self.DOMAIN,self.DOMAIN,self.DOMAIN,self.DIR) 
+				resutlText = resutlText.format(self.DIR,self.DOMAIN,self.DOMAIN,self.DOMAIN,self.DOMAIN,self.DIR)
 				return self.formatFile(resutlText)
 			if self.option == '-vhost':
 				resutlText = self.GetString('admincs_vhost_normal')
-				resutlText = resutlText.format(self.DIR,self.DOMAIN,self.DOMAIN,self.DOMAIN,self.DOMAIN) 
+				resutlText = resutlText.format(self.DIR,self.DOMAIN,self.DOMAIN,self.DOMAIN,self.DOMAIN)
+				return self.formatFile(resutlText)
+			if self.option == '-vhostngx':
+				resutlText = self.GetString('admincs_nginx_cigniter') % (self.DOMAIN, self.DIR)
+
 				return self.formatFile(resutlText)
 		return ""
 
@@ -82,5 +87,3 @@ class FileManager(object):
 		f = open(self.TEMP_DIRECTORY+filename,"w")
 		f.write(text)
 		f.close()
-
-
