@@ -12,15 +12,15 @@ if [ "$1" == "-vhostngx" ]; then
 	_FOLDER_OF_SITES="/etc/nginx/sites-enabled"
 fi
 python vhost_manager.py ${1} ${2} ${3}
-echo ${1}
 if [[ -f "${USER_ADMINCSPATH}/tmp/${2}.conf" ]]; then
 	if [ "$1" == "-vhostngx" ]; then
+		echo "Please give permissions for copy file to ${_FOLDER_OF_SITES} ";
 		su - -c "cp ${USER_ADMINCSPATH}/tmp/${2}.conf ${_FOLDER_OF_SITES} && echo '${_SERVER_DIRECTION}	${2}' >> /etc/hosts && service nginx reload"
 	else
 		su - -c "cp ${USER_ADMINCSPATH}/tmp/${2}.conf ${_FOLDER_OF_SITES} && echo '${_SERVER_DIRECTION}	${2}' >> /etc/hosts && a2ensite ${2}.conf && service apache2 reload"
 	fi
-
 	rm ${_ADMINCS_PATH}tmp/${2}.conf
+	echo "Done!"
 else
 	printf "\033[0;41m Syntax Error\033[0m \n"
 fi

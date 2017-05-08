@@ -9,15 +9,20 @@
 import sys
 import os
 import ConfigParser
+from progress.spinner import Spinner
+import time
 
 """FileManager Class
 Load and format conf files
 """
 
+spinner = Spinner('Creating vhost File.. ')
+
 class FileManager(object):
 
 	"""set up directories for FileManager"""
 	def __init__(self,command=None, domain=None,dir=None):
+		global spinner
 		super(FileManager, self).__init__()
 		config = ConfigParser.RawConfigParser()
 		config.read('config/config.cfg')
@@ -28,23 +33,35 @@ class FileManager(object):
 		self.DOMAIN = domain
 		self.UTIL_FILES = {'admincs_rewrite':"" , 'admincs_man':""}
 		self.loadFiles()
+
 	"""
 	GetString function
 	return file content
 	"""
 	def GetString(self,dir):
+		global spinner
+		spinner.next()
 		fileObject = open(self.TOOL_DIRECTORY+dir , 'rb+', 1)
+		spinner.next()
 		text = fileObject.read()
+		spinner.next()
 		fileObject.close()
+		spinner.next()
 		return text
 
+	def showSpinner(self):
+		global spinner
+		time.sleep(0.2)
+		spinner.next()
 	"""
 	LoadFiles function
 	load files on dictionary
 	"""
 	def loadFiles(self):
+		self.showSpinner()
 		values = {}
 		for file in self.UTIL_FILES :
+			self.showSpinner()
 			self.UTIL_FILES[file]= self.GetString(file)
 
 	"""
@@ -53,6 +70,7 @@ class FileManager(object):
 	"""
 	def formatFile(self , strToformat):
 		for file in self.UTIL_FILES :
+			self.showSpinner()
 			if strToformat.find(file) > 0 :
 				return strToformat.replace(file, self.UTIL_FILES[file])
 		return strToformat
@@ -67,7 +85,7 @@ class FileManager(object):
 		print self.UTIL_FILES['admincs_man']
 
 	def getContent(self):
-
+		self.showSpinner()
 		if self.validateParams() :
 			if self.option == '-vhostr':
 				resutlText = self.GetString('admincs_vhost_rewrite_cigniter')
@@ -79,7 +97,6 @@ class FileManager(object):
 				return self.formatFile(resutlText)
 			if self.option == '-vhostngx':
 				resutlText = self.GetString('admincs_nginx_cigniter') % (self.DOMAIN, self.DIR)
-
 				return self.formatFile(resutlText)
 		return ""
 

@@ -1,7 +1,7 @@
 from fm import FileManager
 
 import sys
-# script to create vhost for apache and nginx 
+# script to create vhost for apache and nginx
 
 fm = FileManager()
 try:
@@ -13,4 +13,3 @@ else:
 	print fm.saveTmp(fm.getContent(),sys.argv[2]+".conf")
 finally:
 	pass
-
